@@ -1,100 +1,155 @@
-# Dashboard
+# Weelocal Economic Engine Dashboard
 
-Python · machine-learning · scikit-learn · pandas · Jupyter · CI/CD · model-evaluation · API · cloud. Repo scale: 29 files; GitHub Actions CI; automated tests; 9 Python modules. End-to-end ML: data prep, training, evaluation, and deployment-ready packaging.
+### Flask + static HTML analytics dashboard serving a 16-section KPI JSON for the Weelocal marketplace thesis.
 
-## Results (numbers)
+[![GitHub](https://img.shields.io/badge/repo-Dashboard-181717?logo=github)](https://github.com/ArchanaChetan07/Dashboard)
+[![Language](https://img.shields.io/badge/language-Python-3572A5)](https://github.com/ArchanaChetan07/Dashboard)
+[![License](https://img.shields.io/badge/license-See%20repository-yellow)](https://github.com/ArchanaChetan07/Dashboard)
+[![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/ArchanaChetan07/Dashboard/actions)
 
-| Metric | Value |
-|---|---|
-| Tracked repository files | **29** |
-| Python modules | **9** |
-| Notebooks | **0** |
-| Markdown docs | **8** |
-| CI workflows present | **Yes** |
-| Automated tests present | **Yes** |
-| Project highlights | **See repository artifacts for measured results.** |
+---
+
+## Overview
+
+Stakeholders need a single local web view of marketplace KPIs, sanitation/data-health reports, and geographic revenue breakdowns without a heavy BI stack.
+
+Flask server (`Aditya Dashboard/run_server.py`) exposing `/`, `/data.json`, `/ping`; metrics/insights Python modules; precomputed `data.json`; documentation set (COMPLETION_REPORT, START_HERE).
+
+Operational local dashboard with verified 3 HTTP endpoints and 16 required JSON sections documented in COMPLETION_REPORT.
+
+This repository is maintained as **production-minded portfolio work**: clear architecture, automated checks where present, and metrics that are **traceable to committed artifacts** (never invented).
+
+---
+
+## Architecture
+
+Excel/loaders → metrics/insights → data.json → Flask → dashboard.html
+
+```mermaid
+flowchart LR
+  X[Excel sources] --> L[data_loader / export_data]
+  L --> J[data.json]
+  J --> F[Flask run_server]
+  F --> H[dashboard.html]
+```
+
+```mermaid
+sequenceDiagram
+  participant U as User/Client
+  participant S as Service/Pipeline
+  participant E as Eval/Tools
+  U->>S: request / job
+  S->>E: execute
+  E-->>S: results
+  S-->>U: report / response
+```
+
+---
+
+## Results & repository facts
+
+> Only values found in code, configs, tests, or generated reports are listed. Absence of a clinical/ML accuracy number means it was **not** published in-repo.
+
+| Metric | Value | Source |
+|---|---|---|
+| HTTP endpoints verified | **3 (/ping, /data.json, /)** | `Aditya Dashboard/COMPLETION_REPORT.md` |
+| Top-level data.json sections | **16** | `Aditya Dashboard/COMPLETION_REPORT.md` |
+| Reported data.json size | **438,643 bytes** | `Aditya Dashboard/COMPLETION_REPORT.md` |
+| Reported dashboard.html size | **144,531 bytes** | `Aditya Dashboard/COMPLETION_REPORT.md` |
+| Tracked files | **29** | `git tree` |
+| Python modules | **9** | `git tree` |
+| Test-related paths | **1** | `git tree` |
+| CI workflows | **Yes** | `.github/workflows` |
+| Docker present | **No** | `repo root` |
+
+```mermaid
+%%{init: {'theme':'base'}}%%
+pie showData title Language composition (bytes)
+    "Python" : 97
+    "Batchfile" : 2
+    "Shell" : 1
+```
+
+---
+
+## Key features
+
+- KPI, revenue trend, geo, Pareto, projections, valuation sections
+- Data health + sanitation report panels
+- Automated insights module
+- Batch/shell launchers
+- COMPLETION_REPORT verification checklist
+
+---
 
 ## Tech stack
 
-- **Primary language:** Python
-- **Languages (GitHub):** Python (135961 bytes), Batchfile (2836 bytes), Shell (755 bytes)
-- **Focus area:** ml
-- **Tooling keywords:** Python, machine-learning, CI/CD, API, Docker, Kubernetes, FastAPI, Prometheus, testing, automation, MLOps, LLM
+| Layer | Technology |
+|---|---|
+| language | Python |
+| web | Flask |
+| frontend | dashboard.html |
+| data | data.json + Excel workbooks |
+| analytics | metrics.py / insights.py |
 
-## Architecture (logical)
+---
 
-\\	ext
-Inputs → Processing / models / agents → Evaluation & metrics → CI checks → Artifacts
-\
-## Engineering practices
-
-1. Reproducible layout with clear module boundaries  
-2. Automated validation via CI and/or tests when present  
-3. Documentation that states measurable outcomes, not slogans  
-4. Skill surface aligned to common JD keywords: Python, machine learning, NLP/LLM, Kubernetes, Docker, observability, data pipelines  
-
-## Quick start
-
-\\ash
-git clone https://github.com/ArchanaChetan07/Dashboard.git
-cd Dashboard
-# Install project requirements (see requirements.txt / pyproject.toml / environment files if present)
-# Run tests or main entrypoints documented in this repo
-\
 ## Skills demonstrated
 
-Python · machine-learning · CI/CD · API design · testing · automation · Docker · Kubernetes · FastAPI · Prometheus · data-science · LLM · MLOps · software-engineering · benchmarking · observability
+Python · Flask · HTML/JS dashboard · pandas · CI/CD · testing · automation
 
-## License / notice
+Keyword surface: **Python · Python · machine-learning · CI/CD · testing · API · Docker · automation · data-science · software-engineering · system-design · observability · LLM · cloud**
 
-See repository license file if present. Metrics above are derived from repository structure and previously published validation notes where available.
+---
 
+## Project structure
 
-### Extended notes
+```text
+Dashboard/
+├── Aditya Dashboard/
+│   ├── run_server.py
+│   ├── dashboard.html
+│   ├── data.json
+│   ├── metrics.py
+│   └── COMPLETION_REPORT.md
+├── requirements.txt
+└── tests/
+```
 
-This section expands documentation for completeness: reproducibility, keyword coverage for Python, machine-learning, CI/CD, API, Docker, Kubernetes, FastAPI, Prometheus, testing, automation, MLOps, LLM, data-science, software-engineering, benchmarking, and observability practices used across the portfolio.
+---
 
+## Installation & usage
 
-### Extended notes
+```bash
+git clone https://github.com/ArchanaChetan07/Dashboard.git
+cd "Dashboard/Aditya Dashboard"
+pip install -r requirements.txt
+python run_server.py
+```
 
-This section expands documentation for completeness: reproducibility, keyword coverage for Python, machine-learning, CI/CD, API, Docker, Kubernetes, FastAPI, Prometheus, testing, automation, MLOps, LLM, data-science, software-engineering, benchmarking, and observability practices used across the portfolio.
+---
 
+## How it works
 
-### Extended notes
+Precomputed marketplace metrics are written to `data.json`; Flask serves the static dashboard and JSON API so charts render without live DB connections.
 
-This section expands documentation for completeness: reproducibility, keyword coverage for Python, machine-learning, CI/CD, API, Docker, Kubernetes, FastAPI, Prometheus, testing, automation, MLOps, LLM, data-science, software-engineering, benchmarking, and observability practices used across the portfolio.
+---
 
+## Future improvements
 
-### Extended notes
+- Replace absolute/local assumptions with configurable data paths
+- Rewrite root README (currently template-spam)
+- Add auth if deploying beyond localhost
 
-This section expands documentation for completeness: reproducibility, keyword coverage for Python, machine-learning, CI/CD, API, Docker, Kubernetes, FastAPI, Prometheus, testing, automation, MLOps, LLM, data-science, software-engineering, benchmarking, and observability practices used across the portfolio.
+---
 
+## License
 
-### Extended notes
+See repository.
 
-This section expands documentation for completeness: reproducibility, keyword coverage for Python, machine-learning, CI/CD, API, Docker, Kubernetes, FastAPI, Prometheus, testing, automation, MLOps, LLM, data-science, software-engineering, benchmarking, and observability practices used across the portfolio.
+---
 
-
-### Extended notes
-
-This section expands documentation for completeness: reproducibility, keyword coverage for Python, machine-learning, CI/CD, API, Docker, Kubernetes, FastAPI, Prometheus, testing, automation, MLOps, LLM, data-science, software-engineering, benchmarking, and observability practices used across the portfolio.
-
-
-### Extended notes
-
-This section expands documentation for completeness: reproducibility, keyword coverage for Python, machine-learning, CI/CD, API, Docker, Kubernetes, FastAPI, Prometheus, testing, automation, MLOps, LLM, data-science, software-engineering, benchmarking, and observability practices used across the portfolio.
-
-
-### Extended notes
-
-This section expands documentation for completeness: reproducibility, keyword coverage for Python, machine-learning, CI/CD, API, Docker, Kubernetes, FastAPI, Prometheus, testing, automation, MLOps, LLM, data-science, software-engineering, benchmarking, and observability practices used across the portfolio.
-
-
-### Extended notes
-
-This section expands documentation for completeness: reproducibility, keyword coverage for Python, machine-learning, CI/CD, API, Docker, Kubernetes, FastAPI, Prometheus, testing, automation, MLOps, LLM, data-science, software-engineering, benchmarking, and observability practices used across the portfolio.
-
-
-### Extended notes
-
-This section expands documentation for completeness: reproducibility, keyword coverage for Python, machine-learning, CI/CD, API, Docker, Kubernetes, FastAPI, Prometheus, testing, automation, MLOps, LLM, data-science, software-engineering, benchmarking, and observability practices used across the portfolio.
+<p align="center">
+  <b>Weelocal Economic Engine Dashboard</b><br/>
+  <a href="https://github.com/ArchanaChetan07/Dashboard">github.com/ArchanaChetan07/Dashboard</a>
+</p>
